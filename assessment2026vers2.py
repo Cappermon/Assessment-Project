@@ -36,10 +36,20 @@ def update_tasks():
 # Create list
 def create_list():
     name = simpledialog.askstring("New List", "List name:")
-    if name:
-        lists[name] = []
-        save_data()
-        update_lists()
+
+    # Check if user cancelled or left it blank
+    if not name or name.strip() == "":
+        messagebox.showerror("Error", "Please enter a list name.")
+        return
+
+    # Check for duplicate list names
+    if name in lists:
+        messagebox.showerror("Error", "A list with that name already exists.")
+        return
+
+    lists[name] = []
+    save_data()
+    update_lists()
 
 # Delete list
 def delete_list():
@@ -69,6 +79,15 @@ def add_task():
         return
 
     task = simpledialog.askstring("Add Task", "Task name:")
+
+    # Check for blank task names
+    if not task or task.strip() == "":
+        messagebox.showerror("Error", "Please enter a task name.")
+        return
+
+    lists[current_list].append([task, False])
+    save_data()
+    update_tasks()
 
     if task:
         lists[current_list].append([task, False])
