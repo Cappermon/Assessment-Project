@@ -100,4 +100,37 @@ def complete_task():
         save_data()
         update_tasks()
 
-        
+# Window
+root = tk.Tk()
+root.title("To Do List")
+root.geometry("700x400")
+
+# Left side - Lists
+frame_left = tk.Frame(root)
+frame_left.pack(side=tk.LEFT, padx=10, pady=10)
+
+tk.Label(frame_left, text="Lists").pack()
+
+listbox_lists = tk.Listbox(frame_left, width=25)
+listbox_lists.pack()
+
+tk.Button(frame_left, text="Create List", command=create_list).pack(fill="x")
+tk.Button(frame_left, text="Delete List", command=delete_list).pack(fill="x")
+tk.Button(frame_left, text="Open List", command=open_list).pack(fill="x")
+
+# Right side - Tasks
+frame_right = tk.Frame(root)
+frame_right.pack(side=tk.RIGHT, padx=10, pady=10)
+
+tk.Label(frame_right, text="Tasks").pack()
+
+listbox_tasks = tk.Listbox(frame_right, width=40)
+listbox_tasks.pack()
+
+tk.Button(frame_right, text="Add Task", command=add_task).pack(fill="x")
+tk.Button(frame_right, text="Remove Task", command=remove_task).pack(fill="x")
+tk.Button(frame_right, text="Mark Complete", command=complete_task).pack(fill="x")
+
+update_lists()
+
+root.mainloop()        
