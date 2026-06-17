@@ -89,11 +89,6 @@ def add_task():
     save_data()
     update_tasks()
 
-    if task:
-        lists[current_list].append([task, False])
-        save_data()
-        update_tasks()
-
 # Remove task
 def remove_task():
     if not current_list:
@@ -152,4 +147,4 @@ tk.Button(frame_right, text="Mark Complete", command=complete_task).pack(fill="x
 
 update_lists()
 
-root.mainloop()        
+root.mainloop()  
